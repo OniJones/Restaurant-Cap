@@ -37,7 +37,13 @@ async function list(req, res, next) {
     res.json({ data });
 }
 
-async function create(req, res, next) {}
+async function create(req, res, next) {
+    const table = req.body.data;
+    const newTable = await service.create(table);
+    table.reservation_id = newTable.reservation_id;
+    table.table_id = newTable.table_id;
+    res.status(201).json({ data: table });
+}
 
 
 
