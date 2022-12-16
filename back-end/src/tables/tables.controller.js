@@ -1,24 +1,17 @@
 const service = require("./tables.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
-const { as } = require("../db/connection");
 
 const VALID_FIELDS = [ "table_name", "capacity" ];
 
 function isValidTable(req, res, next) {
     const table = req.body.data;
     if (!table) {
-        return next({
-            status: 400,
-            message: "Must have data property"
-        });
+        return next({ status: 400, message: "Must have data property" });
     }
 
     VALID_FIELDS.forEach((field) => {
         if (!table[field]) {
-            return next({
-                status: 400,
-                message: `Must have ${field} property.`
-            });
+            return next({ status: 400, message: `Must have ${field} property.` });
         }
     });
 
@@ -27,6 +20,13 @@ function isValidTable(req, res, next) {
             status: 400,
             message: "Capacity must be a number greater than 0",
         });
+    }
+
+    if (table["table_name"].length < 2) {
+        return next({
+            status: 400,
+            message: "table_name must be at least two characters long.",
+        })
     }
 
     next();
@@ -44,8 +44,6 @@ async function create(req, res, next) {
     table.table_id = newTable.table_id;
     res.status(201).json({ data: table });
 }
-
-
 
 module.exports = {
     list: asyncErrorBoundary(list),

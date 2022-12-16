@@ -8,7 +8,7 @@ router.use("/:table_id/seat", seatRouter);
 router
     .route("/")
     .get(controller.list)
-    // .post(controller.create)
+    .post(controller.create)
     .all(methodNotAllowed);
 
 
