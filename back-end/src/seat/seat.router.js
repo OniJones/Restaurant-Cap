@@ -4,8 +4,8 @@ const methodNotAllowed = require("../errors/methodNotAllowed");
 
 router
     .route("/")
-    // .put(controller.update)
-    // .delete(controller.unassign)
+    .put(controller.update)
+    .delete(controller.unassign)
     .all(methodNotAllowed);
 
 module.exports = router;
