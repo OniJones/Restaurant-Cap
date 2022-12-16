@@ -9,7 +9,7 @@ function hasReservationId(req, res, next) {
     if (!table) {
         return next({
             status: 400,
-            message: "Must hace a data property"
+            message: "Must have a data property"
         });
     }
     if (!table.reservation_id) {
@@ -52,7 +52,7 @@ async function tableIsValid(req, res, next) {
     const { table_id } = req.params;
     const currentTable = await tableService.read(table_id);
     const reservation = res.locals.reservation;
-    if (reservation.people > currentTable.capacidy) {
+    if (reservation.people > currentTable.capacity) {
         return next({
             status: 400,
             message: "Table does not have enough capacity for reservation.",
