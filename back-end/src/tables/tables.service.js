@@ -13,7 +13,15 @@ function create(table) {
         .then((newTables) => newTables[0]);
 }
 
+function read(table_id) {
+    return knex("tables")
+        .select("*")
+        .where({ table_id })
+        .first();
+}
+
 module.exports = {
     list,
     create,
+    read,
 }
