@@ -1,5 +1,5 @@
 import React from "react";
-import FinishButton from "./finishButton";
+import FinishButton from "./FinishButton";
 
 export default function TableInfo({ table, loadDashboard }) {
     const status = table.reservation_id ? "Occupied" : "Free";
