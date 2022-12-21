@@ -13,7 +13,7 @@ export default function Edit() {
 
     useEffect(() => {
         async function loadReservation() {
-            const ac = new AportController();
+            const ac = new AbortController();
             try {
                 const reservation = await findReservation(reservation_id, ac.signal);
                 setReservationData(reservation);
