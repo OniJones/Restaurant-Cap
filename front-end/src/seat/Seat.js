@@ -22,6 +22,7 @@ export default function Seat() {
             }
             return () => c.abort();
         }
+        loadTables();
     }, [reservation_id]);
 
     async function handleSubmit(event) {
